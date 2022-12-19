@@ -75,7 +75,7 @@ class testalert(unittest.TestCase):
         # Corregimos el input "Username" y añadimos un nombre de usuario que aún no esté registrado
         # Por ejemplo añadiendo un numero adicional al usuario
         time.sleep(1)
-        username.send_keys("123")
+        username.send_keys("12345")
         time.sleep(1)
         # Hacemos click en el exterior del input para comprobar que está correcto y para que el botón "Sign Up" se desboquee
         driver.find_element(By.XPATH, "//img[contains(@class,'w-44')]").click()
@@ -93,12 +93,18 @@ class testalert(unittest.TestCase):
 
         # Rellenamos el nombre de usuario y contraseña con los datos del usuario que hemos creado
         userlogin=driver.find_element(By.XPATH, "//input[contains(@id,'login-username')]")
-        userlogin.send_keys("Username4")
+        userlogin.send_keys("Username12345")
         time.sleep(1)
         passwordlogin=driver.find_element(By.XPATH, "//input[contains(@id,'login-password')]")
         passwordlogin.send_keys("Password2-!")
         time.sleep(1)
         driver.find_element(By.XPATH, "//button[contains(@id,'login-submit')]").click()
+        time.sleep(1)
+        element = driver.find_element(By.XPATH, "// div[contains( @ id, 'welcome')]")
+        location = element.location
+        size = element.size
+        driver.save_screenshot("Screenshots\welcome2.png")
+
         time.sleep(1)
 
         driver.close()
